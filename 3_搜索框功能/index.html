@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .content {
+                width: 200px;
+            }
+            #show {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="content">
+            <div class="search">
+                <input type="text" id="val" placeholder="enter les courses" />
+                <input type="submit" id="sub" />
+            </div>
+            <div class="show" id="show">
+                <!-- <p>hoho</p>
+                <p>jss</p> -->
+            </div>
+        </div>
+        <script>
+            let arr = [
+                "web front-end tech",
+                "html tech",
+                "css tech",
+                "vue tech",
+                "js tech",
+                "angular tech",
+                "php tech",
+            ];
+            //逻辑：1 先完成，展示区域的显示或隐藏
+            let input = document.getElementById("val");
+            let show = document.getElementById("show");
+            input.onkeyup = function () {
+                show.style.display = "block";
+                // 2. input.value 和arr中的每一项进行匹配。也就是字符串的匹配，indexOf()方法，如果匹配不到，返回-1
+                let str = "";
+                arr.forEach((item) => {
+                    let res = item.indexOf(input.value);
+                    // console.log(res);
+                    if (res != -1) {
+                        str += "<p>" + item + "</p>";
+                    }
+                });
+                // console.log(str);
+                // 如果input.value 为空或者str为false，给用户一个提示
+                if (!input.value || !str) {
+                    show.innerHTML = "<p>pas de résultat</p>";
+                } else {
+                    show.innerHTML = str;
+                }
+            };
+            input.onblur = function () {
+                show.style.display = "none";
+                input.value = "";
+            };
+        </script>
+    </body>
+</html>

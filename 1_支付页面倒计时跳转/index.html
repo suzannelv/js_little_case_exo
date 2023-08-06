@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                width: 200px;
+                height: 280px;
+                background-color: #eee;
+                padding: 20px;
+                margin: 0 auto;
+            }
+            button {
+                margin: 30px 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <p>Produit: Web courses</p>
+            <p>Prix d'origine: 1980 yuan</p>
+            <p>Prix actuel: 1.98 yuan</p>
+            <p>Contenu: HTML, CSS, JS</p>
+            <p>Adress: BEIJING</p>
+            <p>
+                <button>Annuler</button>
+                <button>Payer</button>
+            </p>
+        </div>
+        <script>
+            // 逻辑：点击支付，出现确认框
+            document.getElementsByTagName("button")[1].onclick = function () {
+                let res = window.confirm("vous êtes sûr de payer?");
+                if (res) {
+                    location.href = "./succ.html";
+                }
+            };
+        </script>
+    </body>
+</html>

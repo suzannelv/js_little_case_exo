@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            ul,
+            li {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            ul {
+                overflow: hidden;
+            }
+            li {
+                width: 100px;
+                height: 40px;
+                background-color: #eee;
+                border: 1px solid #ccc;
+                float: left;
+                line-height: 40px;
+                text-align: center;
+            }
+            div {
+                width: 406px;
+                height: 406px;
+                border: 1px solid #ccc;
+            }
+            img {
+                width: 406px;
+                height: 406px;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>chat1</li>
+            <li>chat2</li>
+            <li>chat3</li>
+            <li>chat4</li>
+        </ul>
+        <div>
+            <img
+                src="https://img.freepik.com/photos-gratuite/chat-rouge-blanc-je-studio-blanc_155003-13189.jpg?w=360&t=st=1691353365~exp=1691353965~hmac=4765f4cced4e4d5946eecd04b34195ade9259c69e9b70a062d8359076f759b08"
+                alt=""
+                style="display: block"
+            />
+            <img
+                src="https://img.freepik.com/photos-premium/petit-chaton-gris-fond-blanc_136670-1716.jpg?w=360"
+                alt=""
+            />
+            <img
+                src="https://img.freepik.com/photos-gratuite/kitty-mur-monochrome-derriere-elle_23-2148955134.jpg?w=360&t=st=1691353390~exp=1691353990~hmac=c6b8f8bdcb74a107e6408671dcb11300a2a9ae5be695101b3ab624141b46902b"
+                alt=""
+            />
+            <img
+                src="https://img.freepik.com/photos-gratuite/mise-au-point-selective-gros-plan-chat-tigre-poilu-gris-assis-chaise-bois_181624-8432.jpg?w=826&t=st=1691353408~exp=1691354008~hmac=aba3aa24c152d8c3b172a942c816ce65f992fd61ff78b519927e66171b89aec8"
+                alt=""
+            />
+        </div>
+        <script>
+            // 逻辑：1 移动到哪个选项卡上，自己的背景颜色要改变，对应的内容区域要显示
+            // 移出时，背景颜色要恢复，对应的区域隐藏
+            let li = document.getElementsByTagName("li");
+            let img = document.getElementsByTagName("img");
+            for (let i = 0; i < li.length; i++) {
+                // 先进行元素数组下标的设置
+                li[i].index = i;
+                li[i].onmouseover = function () {
+                    // li[i].style.backgroundColor = "yellow";
+                    this.style.backgroundColor = "yellow";
+                    // console.log(this.index);
+                    // 先把所有的图片都隐藏，再让对应的图片出现
+                    for (let j = 0; j < img.length; j++) {
+                        img[j].style.display = "none";
+                    }
+                    img[this.index].style.display = "block";
+                };
+                li[i].onmouseout = function () {
+                    li[i].style.backgroundColor = "#eee";
+                };
+            }
+        </script>
+    </body>
+</html>

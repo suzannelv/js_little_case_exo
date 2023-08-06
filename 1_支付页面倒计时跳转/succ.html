@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            div {
+                margin: 0 auto;
+                width: 500px;
+            }
+            #jumpTo {
+                color: red;
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>Félicitation, paiement avec succès</h2>
+            <span id="jumpTo">10</span>secondes retour au page d'accueil
+            <p><button>Retourner immédiatement</button></p>
+        </div>
+        <script>
+            //  逻辑：加载页面时，应该触发定时器，10s
+            // 定义一个函数来执行倒计时和页面跳转
+            function startCountdown() {
+                let timer = 10;
+                const jumpToElement = document.getElementById("jumpTo");
+
+                function updateCountdown() {
+                    timer--;
+                    jumpToElement.innerText = timer;
+                    if (timer === 0) {
+                        location.href = "./index.html";
+                    } else {
+                        setTimeout(updateCountdown, 1000); // 继续倒计时，每隔一秒更新一次
+                    }
+                }
+
+                setTimeout(updateCountdown, 1000); // 第一次触发倒计时
+            }
+
+            window.onload = startCountdown;
+
+            document.getElementsByTagName("button")[0].onclick = function () {
+                location.href = "./index.html";
+            };
+        </script>
+    </body>
+</html>
