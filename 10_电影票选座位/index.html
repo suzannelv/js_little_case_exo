@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            ul {
+                margin: auto;
+                border: 1px solid grey;
+            }
+            ul > li {
+                float: left;
+                list-style: none;
+                margin: 5px 10px;
+                width: 200px;
+                height: 30px;
+                background-color: #eee;
+                border: 1px solid black;
+            }
+            .click {
+                font-size: 10px;
+                text-align: center;
+                line-height: 30px;
+                font-weight: bold;
+                color: #333;
+                background-color: orange;
+                border: 1px solid red;
+            }
+            div {
+                margin: auto;
+                width: 400px;
+                height: 100px;
+                text-align: center;
+                line-height: 100px;
+                background-color: #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li class="click">Choisi</li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <p style="clear: both"></p>
+            <div>Ecran</div>
+        </ul>
+        <script>
+            // 逻辑：没有click类的时候 ，进行添加，同时对文本进行赋值，反之，清空click类，同时文本为空
+            let lis = document.getElementsByTagName("li");
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].onclick = function () {
+                    let res = this.getAttribute("class");
+                    if (!res) {
+                        this.setAttribute("class", "click");
+                        this.innerText = "choisi";
+                    } else {
+                        this.setAttribute("class", "");
+                        this.innerText = "";
+                    }
+                };
+            }
+        </script>
+    </body>
+</html>
