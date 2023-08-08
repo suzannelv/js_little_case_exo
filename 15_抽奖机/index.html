@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #fa {
+                width: 600px;
+                height: 600px;
+                border: 1px solid red;
+            }
+            #fa > div {
+                width: 33%;
+                height: 33%;
+                border: 1px solid red;
+                float: left;
+                line-height: 200px;
+                text-align: center;
+                font-size: 30px;
+                font-weight: bold;
+            }
+            #start {
+                cursor: pointer;
+                background-color: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="fa">
+            <div class="option">php</div>
+            <div class="option">js</div>
+            <div class="option">html</div>
+            <div class="option">css</div>
+            <div id="start">start</div>
+            <div class="option">css</div>
+            <div class="option">css</div>
+            <div class="option">css</div>
+            <div class="option">css</div>
+        </div>
+        <script>
+            // 逻辑：1 点击开始的时候，触发一个定时器，
+            // 2. 定时器内部，随机一个数，通过这个数获取奖品所在的元素
+            // 3. 必须设置一个时间点，停止定时器
+            let but = document.getElementById("start");
+            let options = document.querySelectorAll(".option");
+            but.onclick = function () {
+                // 1.触发一个定时器
+                setInterval(() => {
+                    // 2. 随机一个0至7的数，通过数组下标获取具体选中的元素
+                    let ran = Math.round(Math.random() * (7 - 0) + 0);
+                    // 3.给选中的元素添加样式(背景颜色)
+                    options[ran].style.backgroundColor = "orange";
+                }, 1000);
+            };
+        </script>
+    </body>
+</html>
