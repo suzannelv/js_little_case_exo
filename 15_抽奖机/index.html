@@ -44,14 +44,32 @@
             // 3. 必须设置一个时间点，停止定时器
             let but = document.getElementById("start");
             let options = document.querySelectorAll(".option");
+            let timer = null;
             but.onclick = function () {
+                // 设置一个初始值，作为时间判断
+                let num = 0;
                 // 1.触发一个定时器
-                setInterval(() => {
-                    // 2. 随机一个0至7的数，通过数组下标获取具体选中的元素
-                    let ran = Math.round(Math.random() * (7 - 0) + 0);
-                    // 3.给选中的元素添加样式(背景颜色)
-                    options[ran].style.backgroundColor = "orange";
-                }, 1000);
+                if (timer == null) {
+                    timer = setInterval(() => {
+                        num++;
+                        // 2. 随机一个0至7的数，通过数组下标获取具体选中的元素
+                        let ran = Math.round(Math.random() * (7 - 0) + 0);
+
+                        // 3.1 把所有的元素都恢复原来的样式
+                        for (let i = 0; i < options.length; i++) {
+                            options[i].style.backgroundColor = "#fff";
+                        }
+                        // 3.2 给选中的元素添加样式(背景颜色)
+                        options[ran].style.backgroundColor = "orange";
+
+                        // 4. 给定时器设置有效时间，停止定时器
+                        // 50 代表的是业务要求
+                        if (num >= 50) {
+                            clearInterval(timer);
+                            timer = null;
+                        }
+                    }, 100);
+                }
             };
         </script>
     </body>

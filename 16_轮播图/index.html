@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script defer src="./jquery.js"></script>
+        <title>Document</title>
+        <style>
+            a,
+            ul,
+            li {
+                list-style: none;
+                text-decoration: none;
+                margin: 0;
+                padding: 0;
+            }
+            .wrap {
+                width: 600px;
+                height: 400px;
+                margin: 100px auto;
+                position: relative;
+                overflow: hidden;
+            }
+            .navs {
+                width: 4200px;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: -600px;
+                border: 1px solid red;
+            }
+            .navs li {
+                width: 600px;
+                height: 100%;
+                float: left;
+            }
+            .navs li img {
+                width: 100%;
+                height: 100%;
+            }
+            #bots {
+                display: inline-block;
+                width: 600px;
+                height: 40px;
+                background-color: rgba(0, 0, 0, 0.3);
+                text-align: center;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+            #bots li {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: #ccc;
+                position: relative;
+                left: 220px;
+                top: 10px;
+                margin-left: 10px;
+                float: left;
+            }
+            #bots .active {
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap" id="box">
+            <ul id="navs" class="navs">
+                <li>
+                    <!-- banner5 -->
+                    <a href="#"
+                        ><img
+                            src="https://img.freepik.com/photos-gratuite/mise-au-point-selective-gros-plan-chat-tigre-poilu-gris-assis-chaise-bois_181624-8432.jpg?w=826&t=st=1691613007~exp=1691613607~hmac=9746f5a2db09bd8e30c087a7fafd9a23f1830b5553f84e8e0d113a6e03e223d5"
+                            alt=""
+                    /></a>
+                </li>
+                <li>
+                    <!-- banner1 -->
+                    <a href="#"
+                        ><img
+                            src="https://img.freepik.com/photos-gratuite/chat-blanc-se-trouve-genoux-femme_8353-539.jpg?w=826&t=st=1691613034~exp=1691613634~hmac=c52e58242b6a7863352920d513608561333d08db4ec76091fa32dbe90b9f1f2b"
+                            alt=""
+                    /></a>
+                </li>
+                <li>
+                    <!-- banner2 -->
+                    <a href="#"
+                        ><img
+                            src="https://img.freepik.com/photos-gratuite/adorable-chat-relaxant-interieur_23-2150692866.jpg?w=826&t=st=1691613060~exp=1691613660~hmac=448696e0e015a670ec07dd1b5e54eec6a65fb530504d4b352dec8c4731527b14"
+                            alt=""
+                    /></a>
+                </li>
+                <li>
+                    <!-- banner3 -->
+                    <a href="#"
+                        ><img
+                            src="https://img.freepik.com/photos-gratuite/adorable-chat-relaxant-interieur_23-2150692886.jpg?w=826&t=st=1691613078~exp=1691613678~hmac=e3e8709a31ce463177f7ee184575c90cd752c7b9fecdef8d38e518d9726fc891"
+                            alt=""
+                    /></a>
+                </li>
+                <li>
+                    <!-- banner 4 -->
+                    <a href="#"
+                        ><img
+                            src="https://img.freepik.com/photos-gratuite/bouchent-portrait-beau-chat_23-2149214373.jpg?w=826&t=st=1691613089~exp=1691613689~hmac=2ef9096859e7058a3d42947871c6dd4d9785e67b98b27fda5a2bfee15b42a3ce"
+                            alt=""
+                    /></a>
+                </li>
+                <li>
+                    <!-- banner 5 -->
+                    <a href="#"
+                        ><img
+                            src="https://img.freepik.com/photos-gratuite/mise-au-point-selective-gros-plan-chat-tigre-poilu-gris-assis-chaise-bois_181624-8432.jpg?w=826&t=st=1691613007~exp=1691613607~hmac=9746f5a2db09bd8e30c087a7fafd9a23f1830b5553f84e8e0d113a6e03e223d5"
+                            alt=""
+                    /></a>
+                </li>
+                <li>
+                    <!-- banner 1 -->
+                    <a href="#"
+                        ><img
+                            src="https://img.freepik.com/photos-gratuite/chat-blanc-se-trouve-genoux-femme_8353-539.jpg?w=826&t=st=1691613034~exp=1691613634~hmac=c52e58242b6a7863352920d513608561333d08db4ec76091fa32dbe90b9f1f2b"
+                            alt=""
+                    /></a>
+                </li>
+            </ul>
+            <ul id="bots">
+                <li class="bot active"></li>
+                <li class="bot"></li>
+                <li class="bot"></li>
+                <li class="bot"></li>
+                <li class="bot"></li>
+            </ul>
+        </div>
+
+        <script>
+            // 逻辑：触发了一个定时器
+            // 1 图片不断出现或隐藏，不断向左侧移动
+            // 2 对应的小圆点背景颜色变红
+            // $("navs").css("left", -1200);
+            let num = 1;
+            let i = 0;
+            let timer;
+            swiper();
+            // 把定时器做一个函数封装
+            function swiper() {
+                timer = setInterval(() => {
+                    // 1 图片功能
+                    num++;
+                    // 设置条件，当num大于6，num =2
+                    if (num > 6) {
+                        // num =6的时候，其实显示的是banner 1
+                        // 应该通过样式赋值的形式，直接变成真正的banner 1
+                        $("navs").css("left", -600);
+                        num = 2;
+                    }
+
+                    $("#navs").animate({ left: -num * 600 }, 500);
+
+                    // 2. 小圆点功能
+                    i++;
+                    if (i > 4) {
+                        i = 0;
+                    }
+                    $("#bots li")
+                        .eq(i)
+                        .addClass("active")
+                        .siblings()
+                        .removeClass("active");
+                }, 2000);
+            }
+
+            // 鼠标移入，清除定时器
+            $(".wrap").mouseover(() => {
+                clearInterval(timer);
+            });
+
+            // 鼠标移出，开启定时器
+
+            $(".wrap").mouseout(() => {
+                swiper();
+            });
+        </script>
+    </body>
+</html>
