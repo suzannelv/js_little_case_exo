@@ -57,6 +57,7 @@
             let smallImg = document.querySelector(".smallImg");
             let smallDiv = document.querySelector(".smallDiv");
             let bigDiv = document.querySelector(".bigDiv");
+            let bigImg = document.querySelector("#bigImg");
 
             smallImg.onmouseover = function () {
                 smallDiv.style.display = "block";
@@ -65,6 +66,41 @@
             smallImg.onmouseout = function () {
                 smallDiv.style.display = "none";
                 bigDiv.style.display = "none";
+            };
+            // 2. 小div移动方向和大图移动方向是相反的
+            // 2.1 先完成鼠标绑定遮挡层
+            // 鼠标移动距离大于遮挡层的移动距离
+            // 2.2 把小div和大图移动
+
+            // 3 核心：整个放大镜功能存在一个比例
+            // 小div/小图 = 大div/大图
+            // 100/300 = 300/900
+            // 分析：尺寸大小 -> 结论：3倍 -> 才是具体移动距离
+
+            smallImg.onmousemove = function (e) {
+                let event = e || window.event;
+                // console.log(event.clientX, event.clientY);
+                let x = event.clientX - 50;
+                let y = event.clientY - 50;
+                // 对移动范围进行判断
+                if (x >= 200) {
+                    x = 200;
+                }
+                if (x <= 0) {
+                    x = 0;
+                }
+                if (y >= 200) {
+                    y = 200;
+                }
+                if (y <= 0) {
+                    y = 0;
+                }
+                // 小div移动距离
+                smallDiv.style.left = x + "px";
+                smallDiv.style.top = y + "px";
+                // 大图移动距离
+                bigImg.style.left = -3 * x + "px";
+                bigImg.style.top = -3 * y + "px";
             };
         </script>
     </body>
